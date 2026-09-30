@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEWFIT ACADEMIA — Supere Seus Limites Todos os Dias</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0A0F14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="NewFit">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<script src="pwa.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ======================================================= -->
+<!-- LANDING PRINCIPAL -->
+<!-- Ao clicar em "Escolher Plano" ou "Seja Membro", o usuário -->
+<!-- é redirecionado para checkout.html, onde responde a       -->
+<!-- pergunta e preenche o cadastro.                           -->
+<!-- ======================================================= -->
+<div id="landing">
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-wrap container">
+      <div class="logo-box">
+        <!-- TROCAR LOGO AQUI -->
+        <img src="NEWFIT_LOGO_1.svg" alt="Logo NewFit">
+      
+      </div>
+      <nav>
+        <ul id="navList">
+          <li><a href="#hero">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#modalidades">Treinos</a></li>
+          <li><a href="#video">Aulas</a></li>
+          <li><a href="#planos">Planos</a></li>
+          <li><a href="#footer">Contato</a></li>
+          <li class="nav-entrar-mobile"><a href="login.html">Entrar</a></li>
+        </ul>
+      </nav>
+      <div class="nav-btns">
+        <a class="btn nav-entrar" href="login.html">ENTRAR</a>
+        <a class="btn nav-cta" href="checkout.html?plano=Seja+Membro">SEJA MEMBRO</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-text">
+        <h1 class="hero-title">SUPERE <br class="quebra-mobile">SEUS LIMITES<span class="line-accent"> <br>TODOS OS DIAS</span></h1>
+        <p class="desc">Mais do que uma academia,<br> um estilo de vida.</p>
+        <a class="btn btn-primary" href="checkout.html?plano=Seja+Membro">COMECE AGORA</a>
+      </div>
+      <div class="hero-img-wrap">
+        <!-- TROCAR BANNER AQUI -->
+        <img src="img/Banner newfity 1.png" alt="Aluna treinando na NewFit Academia">
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <div>
+        <div class="eyebrow">SOBRE NÓS</div>
+        <h2>MOVIMENTO<br><span class="verde">SAÚDE</span><br><span class="roxo">TRANSFORMAÇÃO</span></h2>
+        <p>A NewFit nasceu para transformar vidas através do movimento. Estrutura completa, profissionais qualificados e um ambiente motivado para você evoluir todos os dias.</p>
+        <a class="btn btn-outline" href="#modalidades">CONHEÇA A ACADEMIA</a>
+      </div>
+      <div class="sobre-video">
+        <!-- TROCAR VÍDEO AQUI: mude só o código depois de /embed/ -->
+        <iframe src="https://www.youtube.com/embed/xnSvTpTdezM?rel=0"
+                title="Conheça a NewFit Academia"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODALIDADES -->
+  <section class="modalidades" id="modalidades">
+    <div class="container">
+      <h2>NOSSAS MODALIDADES</h2>
+      <div class="mod-grid">
+        <div class="mod-card">
+          <div class="mod-icon"><img src="img/musculação.svg" alt=""></div>
+          <span>Musculação</span>
+        </div>
+        <div class="mod-card">
+          <div class="mod-icon"><img src="img/funcional.svg" alt=""></div>
+          <span>Funcional</span>
+        </div>
+        <div class="mod-card">
+          <div class="mod-icon"><img src="img/hiit.svg" alt=""></div>
+          <span>HIIT</span>
+        </div>
+        <div class="mod-card">
+          <div class="mod-icon"><img src="img/yoga.svg" alt=""></div>
+          <span>Yoga</span>
+        </div>
+        <div class="mod-card">
+          <div class="mod-icon"><img src="img/pilates.svg"  alt=""></div>
+          <span>Pilates</span>
+        </div>
+        <div class="mod-card">
+          <div class="mod-icon"><img src="img/boxe.svg" alt=""></div>
+          <span>Boxe</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO AULAS -->
+  <section class="video-sec" id="video">
+    <div class="container">
+      <div>
+        <div class="eyebrow">VÍDEO AULAS</div>
+        <h2>Treine onde estiver!</h2>
+        <p>Acesse nossas aulas online e mantenha sua rotina em dia.</p>
+        <a class="btn btn-primary" href="checkout.html?plano=Seja+Membro">ASSISTIR AGORA</a>
+      </div>
+      <div class="video-aula">
+        <!-- TROCAR VÍDEO AQUI: mude o código em video-aula.js (VIDEO_ID) -->
+        <div id="videoAulaPlayer"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section class="planos" id="planos">
+    <div class="container">
+      <h2>PLANOS</h2>
+      <div class="planos-grid" id="planosGrid">
+        <div class="plano-card" data-plano="Básico">
+          <div class="plano-nome">BÁSICO</div>
+          <div class="plano-preco">R$ 89,90<span>/mês</span></div>
+          <ul>
+            <li>Acesso à musculação</li>
+            <li>Avaliação física</li>
+            <li>Treinos personalizados</li>
+          </ul>
+          <a class="btn btn-outline" href="checkout.html?plano=B%C3%A1sico">ESCOLHER PLANO</a>
+        </div>
+        <div class="plano-card" data-plano="Premium">
+          <div class="plano-tag">MAIS ESCOLHIDO</div>
+          <div class="plano-nome">PREMIUM</div>
+          <div class="plano-preco">R$ 129,90<span>/mês</span></div>
+          <ul>
+            <li>Musculação</li>
+            <li>Todas as modalidades</li>
+            <li>Aulas coletivas</li>
+            <li>Avaliação física</li>
+            <li>Treinos personalizados</li>
+          </ul>
+          <a class="btn btn-primary" href="checkout.html?plano=Premium">ESCOLHER PLANO</a>
+        </div>
+        <div class="plano-card" data-plano="VIP">
+          <div class="plano-nome">VIP</div>
+          <div class="plano-preco">R$ 179,90<span>/mês</span></div>
+          <ul>
+            <li>Tudo do plano Premium</li>
+            <li>Personal Trainer</li>
+            <li>Check-up mensal</li>
+            <li>Acompanhamento nutricional</li>
+          </ul>
+          <a class="btn btn-outline" href="checkout.html?plano=VIP">ESCOLHER PLANO</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="depoimentos">
+    <div class="container">
+      <h2>DEPOIMENTOS</h2>
+      <div class="dep-grid">
+        <div class="dep-card">
+          <div class="dep-quote">&#10077;</div>
+          <p>Lugar incrível, profissionais atenciosos e estrutura completa!</p>
+          <div class="dep-quote-close">&#10078;</div>
+          <div class="dep-author">-Juliana S.</div>
+        </div>
+        <div class="dep-card">
+          <div class="dep-quote">&#10077;</div>
+          <p>Desde que entrei na NewFit, minha vida mudou!</p>
+          <div class="dep-quote-close">&#10078;</div>
+          <div class="dep-author">-Carlos M.</div>
+        </div>
+        <div class="dep-card">
+          <div class="dep-quote">&#10077;</div>
+          <p>Aulas dinâmicas e ambiente motivador. Recomendo!</p>
+          <div class="dep-quote-close">&#10078;</div>
+          <div class="dep-author">-Fernanda L.</div>
+        </div>
+      </div>
+      <div class="dep-dots">
+        <span class="active"></span><span></span><span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="galeria">
+    <div class="container">
+      <h2>GALERIA</h2>
+      <div class="galeria-grid">
+        <!-- TROCAR BANNER AQUI -->
+        <img src="imgG/galeria-1.png" alt="Galeria 1">
+        <img src="imgG/galeria-2.png" alt="Galeria 2">
+        <img src="imgG/galeria-3.png" alt="Galeria 3">
+        <img src="imgG/galeria-4.jpg" alt="Galeria 4">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <div class="cta-final">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <h2>PRONTO PARA A <span class="verde">MELHOR VERSÃO </span>DE VOCÊ?</h2>
+      <a class="btn btn-primary" href="checkout.html?plano=Seja+Membro">VEM PARA NEWFIT</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <!-- TROCAR LOGO AQUI -->
+            <img src="NEWFIT_LOGO_1.svg" alt="Logo NewFit">
+            <div class="logo-text"> <small></small></div>
+          </div>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><img src="imgR/Vector.svg" alt="" srcset=""></a>
+            <a href="#" aria-label="Instagram"><img src="imgR/Group.svg" alt=""></a>
+            <a href="#" aria-label="Youtube"><img src="imgR/Group(1).svg" alt=""></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>LINKS RÁPIDOS</h4>
+          <ul>
+            <li><a href="#hero">Início</a></li><li><a href="#sobre">Sobre</a></li><li><a href="#modalidades">Treinos</a></li><li><a href="#video">Aulas</a></li><li><a href="#planos">Planos</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>INFORMAÇÕES</h4>
+          <p>Rua das Flores, 123<br>Campinas — SP</p>
+          <p>(19) 99999-0000<br>contato@newfity.com.br</p>
+        </div>
+        <div class="footer-col">
+          <h4>HORÁRIOS</h4>
+          <p>Seg — Sex: 06h às 23h<br>Sáb: 08h às 18h<br>Dom: 09h às 13h</p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 NewFit Academia. Todos os direitos reservados.</div>
+    </div>
+  </footer>
+
+</div><!-- /#landing -->
+
+<!-- ======================================================= -->
+<!-- JS (menu mobile) -->
+<!-- ======================================================= -->
+<script src="script.js"></script>
+<script src="video-aula.js" defer></script>
+
+</body>
+</html>

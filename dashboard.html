@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Área do Aluno — NEWFIT ACADEMIA</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0A0F14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="NewFit">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<script src="pwa.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo-box">
+      <!-- TROCAR LOGO AQUI -->
+      <img src="NEWFIT_LOGO_1.svg" alt="Logo NewFit">
+      <div class="logo-text"><small></small></div>
+    </a>
+    <div class="header-right">
+      <button class="btn btn-outline" id="btnPlanosHeader">PLANOS</button>
+      <button class="perfil-btn" id="btnAbrirPerfil">
+        <span class="perfil-avatar" id="perfilAvatarInicial">?</span>
+        <span class="user-email" id="userEmail"></span>
+      </button>
+      <button class="btn btn-outline" id="btnSair">SAIR</button>
+    </div>
+  </div>
+</header>
+
+<!-- BOAS-VINDAS -->
+<div class="container">
+  <div class="welcome">
+    <h1>Sua área de treinos</h1>
+    <p>Escolha uma categoria e comece a treinar agora mesmo.</p>
+  </div>
+
+  <!-- ABAS -->
+  <div class="dash-tabs">
+    <button class="dash-tab-btn active" data-tab="tabTreinos">Treinos</button>
+    <button class="dash-tab-btn" data-tab="tabContinuar">Continuar assistindo</button>
+  </div>
+
+  <!-- ABA: TREINOS -->
+  <div class="dash-tab-conteudo active" id="tabTreinos">
+
+    <!-- FILTROS -->
+    <div class="filtros" id="filtros">
+      <button class="filtro-btn active" data-cat="TODOS">Todos</button>
+      <button class="filtro-btn" data-cat="MUSCULAÇÃO">Musculação</button>
+      <button class="filtro-btn" data-cat="FUNCIONAL">Funcional</button>
+      <button class="filtro-btn" data-cat="HIIT">HIIT</button>
+      <button class="filtro-btn" data-cat="YOGA">Yoga</button>
+      <button class="filtro-btn" data-cat="PILATES">Pilates</button>
+      <button class="filtro-btn" data-cat="BOXE">Boxe</button>
+    </div>
+
+    <!-- GRID DE VÍDEOS -->
+    <div class="video-grid" id="videoGrid">
+      <div class="estado-loading">Carregando vídeos...</div>
+    </div>
+  </div>
+
+  <!-- ABA: CONTINUAR ASSISTINDO -->
+  <div class="dash-tab-conteudo" id="tabContinuar">
+    <h2 class="section-titulo">Continuar assistindo</h2>
+    <p class="section-sub">Os últimos vídeos que você assistiu.</p>
+    <div class="video-grid video-grid--historico" id="historicoGrid">
+      <div class="estado-vazio">Você ainda não assistiu nenhum vídeo.</div>
+    </div>
+  </div>
+
+  <!-- ABA: PLANOS -->
+  <div class="dash-tab-conteudo" id="tabPlanos">
+    <h2 class="section-titulo">Nossos planos</h2>
+    <p class="section-sub">Quer treinar mais? Contrate ou troque de plano quando quiser.</p>
+
+    <div class="planos-grid">
+      <div class="plano-card" data-plano="Básico">
+        <div class="plano-nome">BÁSICO</div>
+        <div class="plano-preco">R$ 89,90<span>/mês</span></div>
+        <ul>
+          <li>Acesso à musculação</li>
+          <li>Avaliação física</li>
+          <li>Treinos personalizados</li>
+        </ul>
+        <a class="btn btn-outline" href="checkout.html?plano=B%C3%A1sico">CONTRATAR</a>
+      </div>
+      <div class="plano-card" data-plano="Premium">
+        <div class="plano-nome">PREMIUM</div>
+        <div class="plano-preco">R$ 129,90<span>/mês</span></div>
+        <ul>
+          <li>Musculação</li>
+          <li>Todas as modalidades</li>
+          <li>Aulas coletivas</li>
+          <li>Avaliação física</li>
+          <li>Treinos personalizados</li>
+        </ul>
+        <a class="btn btn-primary" href="checkout.html?plano=Premium">CONTRATAR</a>
+      </div>
+      <div class="plano-card" data-plano="VIP">
+        <div class="plano-nome">VIP</div>
+        <div class="plano-preco">R$ 179,90<span>/mês</span></div>
+        <ul>
+          <li>Tudo do plano Premium</li>
+          <li>Personal Trainer</li>
+          <li>Check-up mensal</li>
+          <li>Acompanhamento nutricional</li>
+        </ul>
+        <a class="btn btn-outline" href="checkout.html?plano=VIP">CONTRATAR</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL PERFIL -->
+<div class="modal-overlay" id="modalPerfil">
+  <div class="modal-perfil-box">
+    <button class="modal-close" id="fecharPerfil">&times;</button>
+    <div class="perfil-avatar perfil-avatar--grande" id="perfilAvatarGrande">?</div>
+    <h3 id="perfilNome">-</h3>
+    <p class="perfil-info" id="perfilGmail">-</p>
+    <p class="perfil-info" id="perfilNumero">-</p>
+
+    <div class="perfil-plano-box">
+      <div class="perfil-plano-label">Plano atual</div>
+      <div class="perfil-plano-nome" id="perfilPlanoNome">Carregando...</div>
+      <div class="perfil-info" id="perfilPlanoValidade" style="margin-top:6px;margin-bottom:0;"></div>
+    </div>
+
+    <button class="btn btn-primary" id="btnVerPlanosPerfil">VER PLANOS</button>
+  </div>
+</div>
+
+<!-- MODAL PLAYER -->
+<div class="modal-overlay" id="modalPlayer">
+  <div class="modal-player-box">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <div class="player-frame-wrap">
+      <iframe id="playerIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="modal-player-info">
+      <h3 id="playerTitulo"></h3>
+      <div class="video-cat" id="playerCategoria"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================= -->
+<!-- FIREBASE (v10 modular via CDN) -->
+<!-- ======================================================= -->
+<script type="importmap">
+{
+  "imports": {
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"
+  }
+}
+</script>
+<script type="module" src="dashboard.js"></script>
+
+</body>
+</html>

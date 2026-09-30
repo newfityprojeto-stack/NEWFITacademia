@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0F14">
+<title>Sem conexão — NEWFIT ACADEMIA</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+    font-family:'Montserrat', system-ui, sans-serif;
+    color:#FFFFFF;
+    text-align:center;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(106,13,255,0.22), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(0,191,165,0.16), transparent 45%),
+      #0A0F14;
+  }
+  .card{
+    background:#121212;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:20px;
+    max-width:400px;width:100%;
+    padding:44px 30px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.5);
+  }
+  img{width:96px;height:96px;border-radius:20px;margin:0 auto 22px;display:block;}
+  h1{font-size:20px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+  p{color:#FFFFFF;font-size:14px;line-height:1.6;margin-bottom:26px;}
+  button{
+    width:100%;padding:16px 20px;border:none;border-radius:8px;cursor:pointer;
+    font-family:inherit;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;
+    color:#fff;background:linear-gradient(90deg,#6A0DFF 0%,#512DAB 100%);
+    box-shadow:0 8px 24px rgba(106,13,255,0.35);
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <img src="icons/icon-192.png" alt="NewFit">
+    <h1>Sem conexão</h1>
+    <p>Não foi possível carregar a NewFit agora. Verifique sua internet e tente de novo.</p>
+    <button type="button" onclick="location.reload()">Tentar novamente</button>
+  </div>
+</body>
+</html>

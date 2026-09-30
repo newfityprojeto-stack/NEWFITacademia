@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Adm — NEWFIT ACADEMIA</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0A0F14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="NewFit">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<script src="pwa.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo-box">
+      <!-- TROCAR LOGO AQUI -->
+      <img src="NEWFIT_LOGO_1.svg" alt="Logo NewFit">
+      <div class="logo-text"> <small></small></div>
+    </a>
+    <div class="header-right">
+      <div class="admin-title">PAINEL ADM NEWFIT</div>
+      <a href="index.html" class="btn btn-outline">VOLTAR AO SITE</a>
+      <button class="btn btn-outline" id="btnSairAdmin" style="display:none;">SAIR</button>
+    </div>
+  </div>
+</header>
+
+<!-- ======================================================= -->
+<!-- TELA DE LOGIN DO ADMIN -->
+<!-- ======================================================= -->
+<div class="admin-login-wrap" id="telaLoginAdmin">
+  <div class="admin-login-card">
+    <h2>Acesso restrito</h2>
+    <p class="subtitle">Entre com o Gmail e a senha de administrador.</p>
+    <form id="formLoginAdmin" novalidate>
+      <div class="form-group">
+        <label for="adminEmail">Gmail</label>
+        <input type="email" id="adminEmail" placeholder="admin@gmail.com" required>
+      </div>
+      <div class="form-group">
+        <label for="adminSenha">Senha</label>
+        <input type="password" id="adminSenha" placeholder="Sua senha" required>
+      </div>
+      <button type="submit" class="btn btn-primary" id="btnEntrarAdmin">ENTRAR</button>
+      <div class="form-msg" id="msgLoginAdmin"></div>
+    </form>
+  </div>
+</div>
+
+<!-- ======================================================= -->
+<!-- PAINEL (só aparece após login válido) -->
+<!-- ======================================================= -->
+<div class="container" id="painelAdmin" style="display:none;">
+
+  <!-- ABAS -->
+  <div class="abas">
+    <button class="aba-btn active" data-aba="abaVideo">1. Vídeos</button>
+    <button class="aba-btn" data-aba="abaCompras">2. Compras</button>
+    <button class="aba-btn" data-aba="abaUsuarios">3. Usuários</button>
+    <button class="aba-btn" data-aba="abaFuncionarios" id="abaBtnFuncionarios" style="display:none;">4. Funcionários</button>
+  </div>
+
+  <!-- ABA 1: CADASTRAR / GERENCIAR VÍDEOS -->
+  <div class="aba-conteudo active" id="abaVideo">
+    <div class="admin-card" style="margin-bottom:40px;">
+      <h3 class="admin-subtitulo" id="tituloFormVideo">Cadastrar vídeo</h3>
+      <form id="formVideo" novalidate>
+        <input type="hidden" id="vId" value="">
+        <div class="form-group">
+          <label for="vTitulo">Título</label>
+          <input type="text" id="vTitulo" placeholder="Ex: Treino de peito iniciante">
+        </div>
+        <div class="form-group">
+          <label for="vCategoria">Categoria</label>
+          <select id="vCategoria">
+            <option value="MUSCULAÇÃO">Musculação</option>
+            <option value="FUNCIONAL">Funcional</option>
+            <option value="HIIT">HIIT</option>
+            <option value="YOGA">Yoga</option>
+            <option value="PILATES">Pilates</option>
+            <option value="BOXE">Boxe</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="vThumb">Thumbnail (URL)</label>
+          <input type="url" id="vThumb" placeholder="https://exemplo.com/imagem.jpg">
+        </div>
+        <div class="form-group">
+          <label for="vLink">Link do YouTube</label>
+          <input type="url" id="vLink" placeholder="https://www.youtube.com/watch?v=...">
+        </div>
+        <div class="form-group">
+          <label for="vDuracao">Duração</label>
+          <input type="text" id="vDuracao" placeholder="Ex: 12:34">
+        </div>
+        <div class="admin-form-btns">
+          <button type="submit" class="btn btn-primary" id="btnSalvarVideo">SALVAR VÍDEO</button>
+          <button type="button" class="btn btn-outline" id="btnCancelarEdicao" style="display:none;">CANCELAR EDIÇÃO</button>
+        </div>
+        <div class="form-msg" id="msgVideo"></div>
+      </form>
+    </div>
+
+    <!-- LISTA DE VÍDEOS -->
+    <h3 class="admin-subtitulo">Vídeos cadastrados</h3>
+    <div class="table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Thumbnail</th>
+            <th>Título</th>
+            <th>Categoria</th>
+            <th>Duração</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody id="videosTbody">
+          <tr><td colspan="5" class="tabela-loading">Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ABA 2: COMPRAS (histórico de interessados vindos do formulário de checkout) -->
+  <div class="aba-conteudo" id="abaCompras">
+    <p class="admin-aviso">
+      Esta lista mostra quem preencheu o formulário de matrícula no site (checkout), já com o
+      plano que a própria pessoa escolheu no checkout pré-selecionado. Dá pra confirmar ou
+      trocar o plano de cada um direto aqui — a validade é calculada automaticamente (30 dias
+      a partir de hoje). Quem preencheu o checkout já criou o próprio login (Gmail + senha) e aparece
+      na aba "Usuários" — é lá que você atribui o plano que vale pro dashboard do aluno.
+    </p>
+    <div class="table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Gmail</th>
+            <th>Número</th>
+            <th>Idade</th>
+            <th>Plano</th>
+            <th>Validade</th>
+            <th>Resposta Treino</th>
+            <th>Data</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody id="comprasTbody">
+          <tr><td colspan="9" class="tabela-loading">Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ABA 3: USUÁRIOS (contas reais dos alunos, com plano e validade) -->
+  <div class="aba-conteudo" id="abaUsuarios">
+
+    <!-- CRIAR USUÁRIO -->
+    <div class="admin-card" style="margin-bottom:40px;">
+      <h3 class="admin-subtitulo">Criar novo usuário</h3>
+      <form id="formUsuario" novalidate>
+        <div class="form-group">
+          <label for="uNome">Nome completo</label>
+          <input type="text" id="uNome" placeholder="Digite o nome completo">
+        </div>
+        <div class="form-group">
+          <label for="uGmail">Gmail</label>
+          <input type="email" id="uGmail" placeholder="usuario@gmail.com">
+        </div>
+        <div class="form-group">
+          <label for="uNumero">Número WhatsApp</label>
+          <input type="tel" id="uNumero" placeholder="(19) 99999-0000">
+        </div>
+        <div class="form-group">
+          <label for="uSenha">Senha</label>
+          <input type="password" id="uSenha" placeholder="Mínimo 6 caracteres">
+        </div>
+        <button type="submit" class="btn btn-primary" id="btnCriarUsuario">CRIAR USUÁRIO</button>
+        <div class="form-msg" id="msgUsuario"></div>
+      </form>
+    </div>
+
+    <!-- LISTA DE USUÁRIOS -->
+    <h3 class="admin-subtitulo">Usuários cadastrados</h3>
+    <p class="admin-aviso">
+      Escolha um plano no seletor de cada linha e clique em "TROCAR" para atribuir ou mudar o
+      plano do aluno — a validade é calculada automaticamente (30 dias a partir de hoje).
+      "Excluir" remove o cadastro do aluno (Firestore) e o acesso desaparece do painel. O login
+      no Firebase Authentication só pode ser apagado de vez pelo Console do Firebase ou por uma
+      função de backend, pois o SDK usado aqui não tem permissão para excluir contas de terceiros.
+    </p>
+    <div class="table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Gmail</th>
+            <th>Número</th>
+            <th>Plano</th>
+            <th>Validade</th>
+            <th>Data cadastro</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody id="usuariosTbody">
+          <tr><td colspan="7" class="tabela-loading">Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ABA 4: FUNCIONÁRIOS (só aparece / só funciona pra quem está em EMAILS_ADMIN) -->
+  <div class="aba-conteudo" id="abaFuncionarios">
+    <div class="admin-card" style="margin-bottom:40px;">
+      <h3 class="admin-subtitulo">Criar novo funcionário</h3>
+      <form id="formFuncionario" novalidate>
+        <div class="form-group">
+          <label for="fNome">Nome completo</label>
+          <input type="text" id="fNome" placeholder="Digite o nome completo">
+        </div>
+        <div class="form-group">
+          <label for="fGmail">Gmail</label>
+          <input type="email" id="fGmail" placeholder="funcionario@gmail.com">
+        </div>
+        <div class="form-group">
+          <label for="fNumero">Número WhatsApp</label>
+          <input type="tel" id="fNumero" placeholder="(19) 99999-0000">
+        </div>
+        <div class="form-group">
+          <label for="fSenha">Senha</label>
+          <input type="password" id="fSenha" placeholder="Mínimo 6 caracteres">
+        </div>
+        <button type="submit" class="btn btn-primary" id="btnCriarFuncionario">CRIAR FUNCIONÁRIO</button>
+        <div class="form-msg" id="msgFuncionario"></div>
+      </form>
+    </div>
+
+    <h3 class="admin-subtitulo">Funcionários cadastrados</h3>
+    <p class="admin-aviso">
+      Funcionários conseguem entrar neste mesmo painel (mesma tela de login) com o Gmail e a
+      senha cadastrados aqui, e têm acesso às abas Vídeos, Compras e Usuários — mas não
+      veem esta aba "Funcionários". Só quem está na lista EMAILS_ADMIN (arquivo
+      admin-emails.js) consegue ver e gerenciar esta aba. "Excluir" remove o acesso dele ao
+      painel (Firestore); o login no Firebase Authentication só pode ser apagado de vez pelo
+      Console do Firebase.
+    </p>
+    <div class="table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Gmail</th>
+            <th>Número</th>
+            <th>Data cadastro</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody id="funcionariosTbody">
+          <tr><td colspan="5" class="tabela-loading">Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ======================================================= -->
+<!-- FIREBASE (v10 modular via CDN) -->
+<!-- ======================================================= -->
+<script type="importmap">
+{
+  "imports": {
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"
+  }
+}
+</script>
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+  :root{
+    --verde: #00BFA5;
+    --roxo: #6A0DFF;
+    --roxo-escuro: #512DAB;
+    --bg-3: #0A0F14;
+    --bg-4: #121212;
+    --bg-5: #1A1A1A;
+    --texto: #FFFFFF;
+    --texto-muted: #FFFFFF;
+    --borda: rgba(255,255,255,0.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Montserrat', sans-serif;
+    background:var(--bg-3);
+    color:var(--texto);
+    min-height:100vh;
+  }
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+  h1,h2{font-weight:800;text-transform:uppercase;letter-spacing:0.5px;}
+
+  .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+
+  /* ============ HEADER ============ */
+  header{
+    border-bottom:1px solid var(--borda);
+    background:rgba(10,15,20,0.9);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 0;
+  }
+  .logo-box{display:flex;align-items:center;gap:10px;}
+  .logo-box img{height:44px;width:auto;}
+  .logo-text{font-weight:900;font-size:18px;letter-spacing:1px;}
+  .logo-text small{display:block;font-size:9px;letter-spacing:3px;color:var(--verde);font-weight:700;}
+  .admin-title{font-size:14px;letter-spacing:2px;color:var(--roxo);}
+  .header-right{display:flex;align-items:center;gap:20px;}
+  .header-right .btn{padding:10px 22px;font-size:11px;}
+
+  /* ============ TELA DE LOGIN DO ADMIN ============ */
+  .admin-login-wrap{
+    min-height:calc(100vh - 79px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px 20px;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(106,13,255,0.22), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(0,191,165,0.16), transparent 45%),
+      var(--bg-3);
+  }
+  .admin-login-card{
+    background:var(--bg-4);
+    border:1px solid var(--borda);
+    border-radius:20px;
+    max-width:420px;
+    width:100%;
+    padding:48px 44px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.5);
+  }
+  .admin-login-card h2{font-size:22px;margin-bottom:6px;}
+  .admin-login-card .subtitle{
+    color:var(--texto-muted);
+    font-size:13px;
+    margin-bottom:28px;
+  }
+
+  /* ============ TABS ============ */
+  .abas{
+    display:flex;
+    gap:12px;
+    padding:36px 0 30px;
+    flex-wrap:wrap;
+  }
+  .aba-btn{
+    background:var(--bg-4);
+    border:1px solid var(--borda);
+    color:var(--texto-muted);
+    padding:14px 28px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    transition:all .25s ease;
+  }
+  .aba-btn:hover{border-color:var(--verde);color:var(--verde);}
+  .aba-btn.active{
+    background:linear-gradient(90deg, var(--roxo) 0%, var(--roxo-escuro) 100%);
+    border-color:transparent;
+    color:#fff;
+  }
+
+  .aba-conteudo{display:none;padding-bottom:80px;}
+  .aba-conteudo.active{display:block;}
+
+  /* ============ FORM CADASTRO DE VÍDEO ============ */
+  .admin-card{
+    background:var(--bg-4);
+    border:1px solid var(--borda);
+    border-radius:16px;
+    padding:36px;
+    max-width:600px;
+  }
+  .form-group{margin-bottom:18px;}
+  .form-group label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:var(--texto-muted);
+    margin-bottom:8px;
+    text-transform:uppercase;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea{
+    width:100%;
+    padding:14px 16px;
+    background:var(--bg-3);
+    border:1px solid var(--borda);
+    border-radius:8px;
+    color:#fff;
+    font-family:inherit;
+    font-size:14px;
+    outline:none;
+    transition:border-color .2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus{border-color:var(--verde);}
+  .form-group select{cursor:pointer;}
+  .form-group textarea{resize:vertical;min-height:90px;}
+  .form-group.invalid input{border-color:#ff6767;}
+
+  .select-plano{
+    background:var(--bg-3);
+    border:1px solid var(--borda);
+    border-radius:6px;
+    color:#fff;
+    font-family:inherit;
+    font-size:12px;
+    padding:7px 10px;
+    margin-right:8px;
+    cursor:pointer;
+  }
+
+  .btn{
+    display:inline-block;
+    padding:15px 32px;
+    border-radius:8px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-size:13px;
+    text-align:center;
+    transition:transform .25s ease, box-shadow .25s ease, opacity .25s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+  .btn-primary{
+    background:linear-gradient(90deg, var(--roxo) 0%, var(--roxo-escuro) 100%);
+    color:#fff;
+    box-shadow:0 8px 24px rgba(106,13,255,0.35);
+  }
+  .btn-outline{
+    background:transparent;
+    border:2px solid var(--verde);
+    color:var(--verde);
+  }
+  .btn-outline:hover{background:var(--verde);color:#0A0F14;}
+
+  .admin-form-btns{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .admin-form-btns .btn{flex:1;min-width:160px;}
+
+  .btn-editar{
+    background:rgba(0,191,165,0.12);
+    border:1px solid rgba(0,191,165,0.35);
+    color:var(--verde);
+    padding:8px 16px;
+    border-radius:6px;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-right:8px;
+    transition:all .2s ease;
+  }
+  .btn-editar:hover{background:var(--verde);color:#0A0F14;}
+
+  .tabela-thumb{
+    width:70px;
+    height:40px;
+    object-fit:cover;
+    border-radius:6px;
+    display:block;
+  }
+
+  .form-msg{
+    margin-top:16px;
+    font-size:13px;
+    padding:12px 14px;
+    border-radius:8px;
+    display:none;
+  }
+  .form-msg.show{display:block;}
+  .form-msg.erro{background:rgba(255,103,103,0.12);color:#ff6767;border:1px solid rgba(255,103,103,0.3);}
+  .form-msg.sucesso{background:rgba(0,191,165,0.12);color:var(--verde);border:1px solid rgba(0,191,165,0.3);}
+
+  /* ============ TABELA DE COMPRAS ============ */
+  .table-wrap{
+    background:var(--bg-4);
+    border:1px solid var(--borda);
+    border-radius:16px;
+    overflow-x:auto;
+  }
+  table.admin-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+    min-width:900px;
+  }
+  .admin-table th{
+    background:var(--bg-5);
+    text-align:left;
+    padding:14px 16px;
+    color:var(--verde);
+    text-transform:uppercase;
+    font-size:11px;
+    letter-spacing:1px;
+    white-space:nowrap;
+  }
+  .admin-table td{
+    padding:14px 16px;
+    border-bottom:1px solid var(--borda);
+    color:var(--texto);
+    white-space:nowrap;
+  }
+  .admin-table tbody tr:hover{background:rgba(255,255,255,0.03);}
+  .admin-table tbody tr:last-child td{border-bottom:none;}
+  .tabela-vazio, .tabela-loading{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--texto-muted);
+  }
+
+  /* ============ GERENCIAR USUÁRIOS ============ */
+  .admin-subtitulo{
+    font-size:16px;
+    text-transform:none;
+    letter-spacing:0;
+    margin-bottom:18px;
+  }
+  .admin-aviso{
+    background:rgba(0,191,165,0.08);
+    border:1px solid rgba(0,191,165,0.25);
+    color:var(--texto-muted);
+    font-size:12.5px;
+    line-height:1.6;
+    padding:14px 16px;
+    border-radius:8px;
+    margin-bottom:20px;
+  }
+  .btn-excluir{
+    background:rgba(255,103,103,0.12);
+    border:1px solid rgba(255,103,103,0.35);
+    color:#ff6767;
+    padding:8px 16px;
+    border-radius:6px;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    transition:all .2s ease;
+  }
+  .btn-excluir:hover{background:#ff6767;color:#fff;}
+  .btn-excluir:disabled{opacity:.5;cursor:not-allowed;}
+
+  /* ============ RESPONSIVO ============ */
+  @media (max-width:900px){
+    .header-inner{flex-direction:column;align-items:flex-start;gap:10px;}
+    .admin-card{padding:26px;max-width:100%;}
+    .abas{flex-direction:column;}
+    .aba-btn{width:100%;text-align:center;}
+  }
+
+  /* ---------- Tablet / celular ---------- */
+  @media (max-width:768px){
+    .header-inner{padding:16px 0;}
+    .admin-title{font-size:12px;}
+    .admin-aviso{font-size:12px;}
+    .admin-subtitulo{font-size:15px;}
+    .admin-card{padding:22px 18px;}
+    .admin-form-btns{flex-direction:column;}
+    .admin-form-btns .btn{min-width:0;width:100%;}
+    .abas{flex-direction:row;flex-wrap:wrap;gap:10px;padding:24px 0 22px;}
+    .aba-btn{width:auto;flex:1 1 44%;text-align:center;padding:12px 10px;}
+  }
+
+  /* ---------- Celular pequeno ---------- */
+  @media (max-width:480px){
+    .container{padding:0 16px;}
+    .logo-box img{height:36px;}
+    .logo-text{font-size:15px;}
+    .header-inner{flex-direction:column;align-items:stretch;gap:12px;}
+    .header-right{flex-direction:column;align-items:stretch;gap:10px;}
+    .header-right .btn{width:100%;text-align:center;padding:12px;}
+    .admin-title{text-align:center;}
+    .admin-login-card{padding:32px 20px;}
+    .admin-login-wrap{padding:24px 14px;min-height:auto;}
+    .admin-card{padding:20px 16px;}
+    .aba-btn{flex:1 1 100%;}
+    .aba-conteudo{padding-bottom:50px;}
+    .form-group input,
+    .form-group select,
+    .form-group textarea{font-size:16px;} /* evita zoom no iPhone */
+    .select-plano{max-width:130px;font-size:11px;}
+    .admin-table td{padding:12px 10px;}
+    .tabela-thumb{width:56px;height:32px;}
+  }
+
+  /* ---------- Acessibilidade ---------- */
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+  }
+
+/* Placeholders (texto de exemplo dentro dos campos): branco um pouco mais suave, para diferenciar do que a pessoa digita */
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.7);opacity:1;}
+
+.admin-title{color:#fff;}

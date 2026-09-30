@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalizar Matrícula — NEWFIT ACADEMIA</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0A0F14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="NewFit">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<script src="pwa.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="checkout-body">
+
+<!-- TOPO SIMPLES -->
+<div class="checkout-topbar">
+  <div class="container checkout-topbar-inner">
+    <a href="index.html" class="logo-box">
+      <!-- TROCAR LOGO AQUI -->
+      <img src="NEWFIT_LOGO_1.svg" alt="Logo NewFit">
+   
+    </a>
+    <a href="index.html" class="checkout-voltar">&larr; Voltar</a>
+  </div>
+</div>
+
+<!-- ======================================================= -->
+<!-- ETAPA 1 — SOMENTE A PERGUNTA -->
+<!-- ======================================================= -->
+<main class="checkout-wrap" id="stepQuiz">
+  <div class="checkout-card">
+    <div class="modal-plano-tag" id="planoTagQuiz">Plano: Premium</div>
+    <h1 class="checkout-title">Finalize sua matrícula</h1>
+    <p class="checkout-sub">Responda a pergunta abaixo para continuarmos.</p>
+
+    <div class="checkout-question checkout-question--nomargin">
+      <div class="checkout-question-label">Já fez academia? Já treinou?</div>
+      <div class="checkout-quiz-options">
+        <button type="button" class="quiz-btn quiz-btn-sm" id="quizSim">
+          SIM, JÁ TREINEI
+        </button>
+        <button type="button" class="quiz-btn quiz-btn-sm" id="quizNao">
+          NUNCA TREINEI
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ======================================================= -->
+<!-- ETAPA 2 — DADOS DE CADASTRO -->
+<!-- ======================================================= -->
+<main class="checkout-wrap" id="stepForm" style="display:none;">
+  <div class="checkout-card">
+    <div class="modal-plano-tag" id="planoTagForm">Plano: Premium</div>
+    <h1 class="checkout-title">Agora, seus dados</h1>
+    <p class="checkout-sub">Preencha as informações abaixo para concluir sua matrícula.</p>
+
+    <form id="formCompra" novalidate>
+      <div class="form-group" id="grpNome">
+        <label for="inpNome">Nome completo</label>
+        <input type="text" id="inpNome" placeholder="Digite seu nome completo">
+        <div class="form-error">Informe seu nome completo.</div>
+      </div>
+      <div class="form-group" id="grpGmail">
+        <label for="inpGmail">Gmail</label>
+        <input type="email" id="inpGmail" placeholder="seuemail@gmail.com">
+        <div class="form-error">Informe um Gmail válido.</div>
+      </div>
+      <div class="form-group" id="grpNumero">
+        <label for="inpNumero">Número WhatsApp</label>
+        <input type="tel" id="inpNumero" placeholder="(19) 99999-0000">
+        <div class="form-error">Informe um número válido.</div>
+      </div>
+      <div class="form-group" id="grpIdade">
+        <label for="inpIdade">Idade</label>
+        <input type="number" id="inpIdade" placeholder="Sua idade" min="1" max="120">
+        <div class="form-error">Informe sua idade.</div>
+      </div>
+      <div class="form-group" id="grpSenha">
+        <label for="inpSenha">Senha</label>
+        <input type="password" id="inpSenha" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+        <div class="form-error">A senha precisa ter no mínimo 6 caracteres.</div>
+      </div>
+      <div class="form-group" id="grpConfirmar">
+        <label for="inpConfirmar">Confirmar senha</label>
+        <input type="password" id="inpConfirmar" placeholder="Repita a senha" autocomplete="new-password">
+        <div class="form-error">As senhas não são iguais.</div>
+      </div>
+      <button type="button" class="btn btn-outline checkout-btn-voltar" id="btnVoltarQuiz">&larr; VOLTAR</button>
+      <button type="submit" class="btn btn-primary" id="btnFinalizar">FINALIZAR MATRICULAR</button>
+    </form>
+  </div>
+</main>
+
+<!-- ======================================================= -->
+<!-- ETAPA 3 — CONFIRMAÇÃO (mensagem final) -->
+<!-- ======================================================= -->
+<div id="successScreen">
+  <div class="success-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+  </div>
+  <h2>Compra realizada com sucesso!</h2>
+  <p id="successMsg">Recebemos seus dados, vamos te chamar no WhatsApp!</p>
+  <!-- TROCAR LINK DO PAINEL DE MEMBRO AQUI -->
+  <a class="btn btn-primary" href="login.html" id="btnPainelMembro">Ir para o painel de membro</a>
+</div>
+
+<div class="toast" id="toast">Preencha todos os campos corretamente.</div>
+
+<!-- ======================================================= -->
+<!-- FIREBASE + JS -->
+<!-- ======================================================= -->
+<script type="importmap">
+{
+  "imports": {
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"
+  }
+}
+</script>
+<script type="module" src="checkout.js"></script>
+
+</body>
+</html>

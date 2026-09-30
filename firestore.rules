@@ -1,0 +1,127 @@
+// =========================================================
+// REGRAS DE SEGURANÇA DO FIRESTORE — NEWFITY ACADEMIA
+// =========================================================
+// Onde colar: Firebase Console > Firestore Database > Regras > Publicar
+//
+// POR QUE ISSO É NECESSÁRIO:
+// o admin.js só decide o que MOSTRAR na tela com base no e-mail logado
+// (ou em ser funcionário cadastrado). Isso é só aparência. Sem regras
+// como estas, o Firestore por padrão (ou em "modo de teste") permite
+// que QUALQUER PESSOA no mundo leia e edite seus dados diretamente,
+// sem precisar abrir seu site — inclusive a lista de compras com nome,
+// Gmail, WhatsApp e idade dos seus clientes. Essas regras é que
+// impedem isso de verdade.
+//
+// Lembre-se de manter a lista de e-mails abaixo IGUAL à lista
+// EMAILS_ADMIN que está em admin-emails.js.
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null &&
+        request.auth.token.email in [
+          'newfity@gmail.com' // <-- troque pelos mesmos e-mails de EMAILS_ADMIN
+        ];
+    }
+
+    // Funcionário = tem um documento em funcionarios_newfity com o
+    // mesmo uid da conta logada (é assim que o admin.js também decide
+    // se mostra o painel pra essa conta).
+    function isFuncionario() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/funcionarios_newfity/$(request.auth.uid));
+    }
+
+    function isStaff() {
+      return isAdmin() || isFuncionario();
+    }
+
+    // Validação do formulário PÚBLICO de checkout: só aceita exatamente os
+    // campos que o checkout.js envia, com tipo e tamanho corretos. Sem isso
+    // qualquer pessoa podia encher a aba Compras de lixo.
+    function compraValida() {
+      let d = request.resource.data;
+      return d.keys().hasAll(['nome','gmail','numero','idade','planoEscolhido','respostaQuiz','data'])
+        && d.keys().hasOnly(['nome','gmail','numero','idade','planoEscolhido','respostaQuiz','data'])
+        && d.nome is string && d.nome.size() >= 3 && d.nome.size() <= 100
+        && d.gmail is string && d.gmail.size() <= 120
+        && d.gmail.lower().matches('^[^@ ]+@gmail[.]com$')
+        && d.numero is string && d.numero.size() >= 10 && d.numero.size() <= 40
+        && d.idade is number && d.idade >= 1 && d.idade <= 120
+        && d.planoEscolhido is string && d.planoEscolhido.size() <= 50
+        && d.respostaQuiz in ['sim', 'nao']
+        && d.data == request.time;
+    }
+
+    // Cadastro que o PRÓPRIO aluno cria ao se registrar em login.html:
+    // só nome/gmail/numero/data, sem campos de plano, e o gmail precisa ser
+    // o mesmo da conta logada.
+    function cadastroProprioValido() {
+      let d = request.resource.data;
+      return d.keys().hasAll(['nome','gmail','numero','data'])
+        && d.keys().hasOnly(['nome','gmail','numero','data'])
+        && d.nome is string && d.nome.size() >= 3 && d.nome.size() <= 100
+        && d.gmail is string
+        && d.gmail.lower() == request.auth.token.email.lower()
+        && d.numero is string && d.numero.size() >= 10 && d.numero.size() <= 40
+        && d.data == request.time;
+    }
+
+    // Vídeos: qualquer aluno logado pode ler (para assistir no dashboard).
+    // Admin e funcionários podem cadastrar, editar ou excluir vídeos.
+    match /videos_newfity/{videoId} {
+      allow read: if request.auth != null;
+      allow write: if isStaff();
+    }
+
+    // Compras: o formulário de checkout é público, então qualquer
+    // visitante (mesmo sem estar logado) pode CRIAR uma compra nova.
+    // Só admin/funcionários podem listar, editar ou apagar — é onde
+    // ficam os dados pessoais dos seus clientes/interessados.
+    match /compras_newfity/{compraId} {
+      allow create: if compraValida();
+      allow read, update, delete: if isStaff();
+    }
+
+    // Usuários (alunos): cada aluno só lê/atualiza o próprio cadastro.
+    // Admin/funcionários podem ler, criar, excluir E editar qualquer
+    // usuário — é o que permite trocar o plano de um aluno pela aba
+    // "Usuários" do painel.
+    // O aluno pode CRIAR o próprio cadastro (cadastro pela tela de login) e
+    // EDITAR só nome e numero — nunca os campos de plano/validade, que só
+    // admin/funcionários alteram.
+    match /usuarios_newfity/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || isStaff());
+      allow create: if isStaff() ||
+        (request.auth != null && request.auth.uid == uid && cadastroProprioValido());
+      allow update: if isStaff() ||
+        (request.auth != null && request.auth.uid == uid &&
+         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nome', 'numero']));
+      allow delete: if isStaff();
+    }
+
+    // Planos: agora são uma lista fixa no código (não vêm mais do banco
+    // como uma coleção própria) — os planos escolhidos ficam guardados
+    // direto nos campos planoId/planoNome/planoExpiraEm de cada compra
+    // e de cada usuário (regras já cobertas acima).
+
+    // Funcionários: SÓ o admin master (isAdmin()) pode ler a lista
+    // inteira, criar ou excluir funcionários. Um funcionário só
+    // consegue ler o PRÓPRIO documento (é assim que o admin.js
+    // confirma, no login, que aquela conta tem acesso ao painel) —
+    // ele não lista nem edita os outros.
+    match /funcionarios_newfity/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Histórico de "continuar assistindo": cada aluno só acessa o próprio.
+    match /historico_newfity/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Qualquer outra coleção não prevista aqui fica bloqueada por padrão.
+  }
+}

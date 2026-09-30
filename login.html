@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrar — NEWFIT ACADEMIA</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0A0F14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="NewFit">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<script src="pwa.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="login-page">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="container">
+      <a href="index.html" class="logo-box">
+        <!-- TROCAR LOGO AQUI -->
+        <img src="NEWFIT_LOGO_1.svg" alt="Logo NewFit">
+        <div class="logo-text"><small></small></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- LOGIN / CADASTRO -->
+  <div class="login-hero">
+    <div class="login-card">
+
+      <!-- TELA 1: LOGIN -->
+      <div class="login-screen active" id="screenLogin">
+        <h2>Entrar</h2>
+        <p class="subtitle">Acesse sua área de aluno NewFit.</p>
+
+        <form id="formLogin" novalidate>
+          <div class="form-group">
+            <label for="loginEmail">E-mail</label>
+            <input type="email" id="loginEmail" placeholder="seuemail@gmail.com" required>
+          </div>
+          <div class="form-group">
+            <label for="loginSenha">Senha</label>
+            <input type="password" id="loginSenha" placeholder="Sua senha" required>
+          </div>
+
+          <div class="login-opcoes">
+            <label class="checkbox-label">
+              <input type="checkbox" id="lembrarDeMim" checked>
+              <span>Lembrar de mim</span>
+            </label>
+            <a href="#" id="esqueciSenha">Esqueci minha senha</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="btnEntrar">ENTRAR</button>
+          <div class="form-msg" id="msgLogin"></div>
+
+          <p class="troca-tela">Não tem conta? <a href="#" id="irParaCriar">Criar conta</a></p>
+        </form>
+      </div>
+
+      <!-- TELA 2: CRIAR CONTA -->
+      <div class="login-screen" id="screenCriar">
+        <h2>Criar Conta</h2>
+        <p class="subtitle">Preencha seus dados para começar na NewFit.</p>
+
+        <form id="formCriar" novalidate>
+          <div class="form-group">
+            <label for="criarNome">Nome completo</label>
+            <input type="text" id="criarNome" placeholder="Digite seu nome completo" required>
+          </div>
+          <div class="form-group">
+            <label for="criarGmail">Gmail</label>
+            <input type="email" id="criarGmail" placeholder="seuemail@gmail.com" required>
+          </div>
+          <div class="form-group">
+            <label for="criarNumero">Número WhatsApp</label>
+            <input type="tel" id="criarNumero" placeholder="(19) 99999-0000" required>
+          </div>
+          <div class="form-group">
+            <label for="criarSenha">Senha</label>
+            <input type="password" id="criarSenha" placeholder="Mínimo 6 caracteres" required>
+          </div>
+          <div class="form-group">
+            <label for="criarConfirmarSenha">Confirmar senha</label>
+            <input type="password" id="criarConfirmarSenha" placeholder="Repita a senha" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="btnCriar">CRIAR CONTA</button>
+          <div class="form-msg" id="msgCriar"></div>
+
+          <p class="troca-tela">Já tem conta? <a href="#" id="irParaLogin">Entrar</a></p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ======================================================= -->
+<!-- FIREBASE (v10 modular via CDN) -->
+<!-- ======================================================= -->
+<script type="importmap">
+{
+  "imports": {
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"
+  }
+}
+</script>
+<script type="module" src="login.js"></script>
+
+</body>
+</html>
