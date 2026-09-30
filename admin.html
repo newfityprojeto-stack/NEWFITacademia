@@ -133,13 +133,6 @@
 
   <!-- ABA 2: COMPRAS (histórico de interessados vindos do formulário de checkout) -->
   <div class="aba-conteudo" id="abaCompras">
-    <p class="admin-aviso">
-      Esta lista mostra quem preencheu o formulário de matrícula no site (checkout), já com o
-      plano que a própria pessoa escolheu no checkout pré-selecionado. Dá pra confirmar ou
-      trocar o plano de cada um direto aqui — a validade é calculada automaticamente (30 dias
-      a partir de hoje). Quem preencheu o checkout já criou o próprio login (Gmail + senha) e aparece
-      na aba "Usuários" — é lá que você atribui o plano que vale pro dashboard do aluno.
-    </p>
     <div class="table-wrap">
       <table class="admin-table">
         <thead>
@@ -182,6 +175,10 @@
           <input type="tel" id="uNumero" placeholder="(19) 99999-0000">
         </div>
         <div class="form-group">
+          <label for="uIdade">Idade</label>
+          <input type="number" id="uIdade" placeholder="Idade do aluno" min="1" max="120">
+        </div>
+        <div class="form-group">
           <label for="uSenha">Senha</label>
           <input type="password" id="uSenha" placeholder="Mínimo 6 caracteres">
         </div>
@@ -192,13 +189,6 @@
 
     <!-- LISTA DE USUÁRIOS -->
     <h3 class="admin-subtitulo">Usuários cadastrados</h3>
-    <p class="admin-aviso">
-      Escolha um plano no seletor de cada linha e clique em "TROCAR" para atribuir ou mudar o
-      plano do aluno — a validade é calculada automaticamente (30 dias a partir de hoje).
-      "Excluir" remove o cadastro do aluno (Firestore) e o acesso desaparece do painel. O login
-      no Firebase Authentication só pode ser apagado de vez pelo Console do Firebase ou por uma
-      função de backend, pois o SDK usado aqui não tem permissão para excluir contas de terceiros.
-    </p>
     <div class="table-wrap">
       <table class="admin-table">
         <thead>
@@ -206,6 +196,7 @@
             <th>Nome</th>
             <th>Gmail</th>
             <th>Número</th>
+            <th>Idade</th>
             <th>Plano</th>
             <th>Validade</th>
             <th>Data cadastro</th>
@@ -246,14 +237,6 @@
     </div>
 
     <h3 class="admin-subtitulo">Funcionários cadastrados</h3>
-    <p class="admin-aviso">
-      Funcionários conseguem entrar neste mesmo painel (mesma tela de login) com o Gmail e a
-      senha cadastrados aqui, e têm acesso às abas Vídeos, Compras e Usuários — mas não
-      veem esta aba "Funcionários". Só quem está na lista EMAILS_ADMIN (arquivo
-      admin-emails.js) consegue ver e gerenciar esta aba. "Excluir" remove o acesso dele ao
-      painel (Firestore); o login no Firebase Authentication só pode ser apagado de vez pelo
-      Console do Firebase.
-    </p>
     <div class="table-wrap">
       <table class="admin-table">
         <thead>
