@@ -752,7 +752,7 @@
     .dep-grid{grid-template-columns:1fr;}
     .footer-grid{grid-template-columns:1fr 1fr;}
     .hero .container, .sobre .container, .video-sec .container{grid-template-columns:1fr;}
-    .hero-img-wrap{order:-1;}
+    .hero-img-wrap{order:-1;} /* no celular/tablet o banner fica em cima, antes do texto */
   }
   @media (max-width:768px){
     nav ul{
@@ -1092,10 +1092,13 @@
    HERO NO CELULAR — título em 3 linhas, texto à esquerda,
    botão com largura do próprio texto (não estica)
    ======================================================= */
-.quebra-mobile{display:none;}
+/* Título sempre em 3 linhas (computador e celular): SUPERE / SEUS LIMITES / TODOS OS DIAS.
+   "SUPERE" é um bloco próprio (e não um <br> com display trocado, que em alguns navegadores
+   gerava uma linha em branco enorme). */
+.hero-linha1{display:block;}
+.hero-title{line-height:1.1;}
 
 @media (max-width:768px){
-  .quebra-mobile{display:inline;}
   .hero-title{line-height:1.15;}
   .hero p.desc{max-width:none;}
 }
